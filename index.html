@@ -19,7 +19,17 @@
         let ballX = 75;
         let ballY = 75;
 
-        setInterval(draw, 1000);
+        const framesPerSecond = 30;
+
+        setInterval(function() {
+          move();
+          draw();
+        }, 1000/framesPerSecond);
+
+        function move() {
+          ballX += 2;
+          console.log('ballX is now: ' + ballX);
+        }
 
         function draw() {
           ctx.fillStyle = 'black';
@@ -30,8 +40,7 @@
           ctx.arc(ballX, ballY, 10, 0, Math.PI*2);
           ctx.fill();
 
-          ballX += 50;
-          console.log('ballX is now: ' + ballX)
+
         }
       }
 
