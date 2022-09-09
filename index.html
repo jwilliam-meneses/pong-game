@@ -9,7 +9,7 @@
   </head>
   <body>
 
-    <canvas width="400" height="300"></canvas>
+    <canvas width="800" height="600"></canvas>
 
     <script>
       window.onload = function() {
@@ -28,6 +28,9 @@
         let paddle1Y = 100;
         let paddle2Y = 100;
 
+        let player1Score = 0;
+        let player2Score = 0;
+
         const framesPerSecond = 30;
 
         setInterval(function() {
@@ -38,7 +41,7 @@
         canvas.addEventListener('mousemove', function(evt) {
           let mousePos = calculateMousePos(evt);
 
-          paddle2Y = mousePos.y - (PADDLE_HEIGHT/2);
+          paddle1Y = mousePos.y - (PADDLE_HEIGHT/2);
         });
 
         function move() {
@@ -50,6 +53,8 @@
             if (ballY > paddle2Y && ballY < paddle2Y + PADDLE_HEIGHT) {
               ballSpeedX *= -1;
             } else {
+              player1Score += 1;
+
               ballReset();
             }
           }
@@ -58,6 +63,8 @@
             if (ballY > paddle1Y && ballY < paddle1Y + PADDLE_HEIGHT) {
               ballSpeedX *= -1;
             } else {
+              player2Score += 1;
+
               ballReset();
             }
           }
@@ -74,6 +81,9 @@
           colorRect((canvas.width - PADDLE_THICKNESS), paddle2Y, PADDLE_THICKNESS, PADDLE_HEIGHT, 'white');
 
           colorCircle(ballX, ballY, 10, 'white');
+
+          ctx.fillText('Player 1: ' + player1Score, canvas.width/2 - 50, 100);
+          ctx.fillText('Player 2: ' + player2Score, canvas.width/2 + 50, 100);
         }
 
         function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
