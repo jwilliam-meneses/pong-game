@@ -40,12 +40,21 @@
         });
 
         function move() {
-          if ((ballX > canvas.width - 10) || (ballX <= 10)) {
+          if ((ballX > canvas.width)) {
             ballSpeedX *= -1;
           }
 
-          if ((ballY > canvas.height - 10) || (ballY <= 10)) {
+          if ((ballY > canvas.height) || (ballY <= 0)) {
             ballSpeedY *= -1;
+          }
+
+
+          if (ballX < 0) {
+            if (ballY > paddle1Y && ballY < paddle1Y + PADDLE_HEIGHT) {
+              ballSpeedX *= -1;
+            } else {
+              ballReset();
+            }
           }
 
           ballX += ballSpeedX;
@@ -83,6 +92,11 @@
             x: mouseX,
             y: mouseY
           }
+        }
+
+        function ballReset() {
+          ballX = canvas.width/2;
+          ballY = canvas.height/2;
         }
       }
 
