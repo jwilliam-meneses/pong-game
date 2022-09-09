@@ -22,12 +22,22 @@
         let ballSpeedX = 6;
         let ballSpeedY = 6;
 
+        const PADDLE_HEIGHT = 100;
+
+        let paddle1Y = 100;
+
         const framesPerSecond = 30;
 
         setInterval(function() {
           move();
           draw();
         }, 1000/framesPerSecond);
+
+        canvas.addEventListener('mousemove', function(evt) {
+          let mousePos = calculateMousePos(evt);
+
+          paddle1Y = mousePos.y - (PADDLE_HEIGHT/2);
+        });
 
         function move() {
           if ((ballX > canvas.width - 10) || (ballX <= 10)) {
@@ -45,7 +55,7 @@
         function draw() {
           colorRect(0, 0, canvas.width, canvas.height, 'black');
 
-          colorRect(0, 100, 10, 100, 'white');
+          colorRect(0, paddle1Y, 10, PADDLE_HEIGHT, 'white');
 
           colorCircle(ballX, ballY, 10, 'white');
         }
@@ -60,6 +70,19 @@
           ctx.beginPath();
           ctx.arc(centerX, centerY, radius, 0, Math.PI*2);
           ctx.fill();
+        }
+
+        function calculateMousePos(evt) {
+          const rect = canvas.getBoundingClientRect();
+          const root = document.documentElement;
+
+          let mouseX = evt.clientX - rect.left - root.scrollLeft;
+          let mouseY = evt.clientY - rect.top - root.scrollTop;
+
+          return {
+            x: mouseX,
+            y: mouseY
+          }
         }
       }
 
