@@ -12,22 +12,29 @@
     <canvas width="400" height="300"></canvas>
 
     <script>
-      window.onload = function(){
+      window.onload = function() {
         const canvas = document.querySelector('canvas');
         const ctx = canvas.getContext('2d');
 
-        draw(canvas, ctx);
+        let ballX = 75;
+        let ballY = 75;
+
+        setInterval(draw, 1000);
+
+        function draw() {
+          ctx.fillStyle = 'black';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = 'white';
+          ctx.beginPath();
+          ctx.arc(ballX, ballY, 10, 0, Math.PI*2);
+          ctx.fill();
+
+          ballX += 50;
+          console.log('ballX is now: ' + ballX)
+        }
       }
 
-      function draw(canvas, ctx) {
-        ctx.fillStyle = 'black';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = 'white';
-        ctx.beginPath();
-        ctx.arc(75, 75, 10, 0, Math.PI*2);
-        ctx.fill();
-      }
     </script>
 
   </body>
