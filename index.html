@@ -20,6 +20,7 @@
         let ballY = 75;
 
         let ballSpeedX = 6;
+        let ballSpeedY = 6;
 
         const framesPerSecond = 30;
 
@@ -29,17 +30,16 @@
         }, 1000/framesPerSecond);
 
         function move() {
-          if (ballX > canvas.width - 10) {
+          if ((ballX > canvas.width - 10) || (ballX <= 10)) {
             ballSpeedX *= -1;
           }
 
-          if (ballX <= 10) {
-            ballSpeedX *= -1;
+          if ((ballY > canvas.height - 10) || (ballY <= 10)) {
+            ballSpeedY *= -1;
           }
 
           ballX += ballSpeedX;
-          console.log('ballX is now: ' + ballX);
-          console.log('ballSpeedX is now: ' + ballSpeedX);
+          ballY += ballSpeedY;
         }
 
         function draw() {
