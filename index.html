@@ -23,8 +23,10 @@
         let ballSpeedY = 6;
 
         const PADDLE_HEIGHT = 100;
+        const PADDLE_THICKNESS = 10;
 
         let paddle1Y = 100;
+        let paddle2Y = 100;
 
         const framesPerSecond = 30;
 
@@ -64,7 +66,9 @@
         function draw() {
           colorRect(0, 0, canvas.width, canvas.height, 'black');
 
-          colorRect(0, paddle1Y, 10, PADDLE_HEIGHT, 'white');
+          colorRect(0, paddle1Y, PADDLE_THICKNESS, PADDLE_HEIGHT, 'white');
+
+          colorRect((canvas.width - PADDLE_THICKNESS), paddle2Y, PADDLE_THICKNESS, PADDLE_HEIGHT, 'white');
 
           colorCircle(ballX, ballY, 10, 'white');
         }
