@@ -43,15 +43,22 @@
         }
 
         function draw() {
-          ctx.fillStyle = 'black';
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          colorRect(0, 0, canvas.width, canvas.height, 'black');
 
-          ctx.fillStyle = 'red';
-          ctx.fillRect(0, 100, 10, 100);
+          colorRect(0, 100, 10, 100, 'white');
 
-          ctx.fillStyle = 'white';
+          colorCircle(ballX, ballY, 10, 'white');
+        }
+
+        function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
+          ctx.fillStyle = fillColor;
+          ctx.fillRect(topLeftX, topLeftY, boxWidth, boxHeight);
+        }
+
+        function colorCircle(centerX, centerY, radius, fillColor) {
+          ctx.fillStyle = fillColor;
           ctx.beginPath();
-          ctx.arc(ballX, ballY, 10, 0, Math.PI*2);
+          ctx.arc(centerX, centerY, radius, 0, Math.PI*2);
           ctx.fill();
         }
       }
