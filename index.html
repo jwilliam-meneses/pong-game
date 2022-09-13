@@ -124,6 +124,11 @@
         }
 
         function ballReset() {
+          if (player1Score >= 5 || player2Score >= 5) {
+            player1Score = 0;
+            player2Score = 0;
+          }
+
           ballX = canvas.width/2;
           ballY = canvas.height/2;
 
