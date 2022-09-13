@@ -131,9 +131,11 @@
         }
 
         function moveComputerPaddle() {
-          if (ballY > (paddle2Y)) {
+          let centerOfPaddle = paddle2Y + (PADDLE_HEIGHT/2);
+
+          if (ballY > (centerOfPaddle + 35)) {
             paddle2Y += NPC_STEP;
-          } else {
+          } else if (ballY < (centerOfPaddle - 35)) {
             paddle2Y -= NPC_STEP;
           }
         }
