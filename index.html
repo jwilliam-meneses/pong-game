@@ -20,10 +20,11 @@
         let ballY = 75;
 
         let ballSpeedX = 6;
-        let ballSpeedY = 5;
+        let ballSpeedY = 6;
 
         const PADDLE_HEIGHT = 100;
         const PADDLE_THICKNESS = 10;
+        const NPC_STEP = 5;
 
         let paddle1Y = 100;
         let paddle2Y = 100;
@@ -45,6 +46,8 @@
         });
 
         function move() {
+          moveComputerPaddle();
+
           if ((ballY > canvas.height) || (ballY <= 0)) {
             ballSpeedY *= -1;
           }
@@ -125,6 +128,14 @@
           ballY = canvas.height/2;
 
           ballSpeedX *= -1;
+        }
+
+        function moveComputerPaddle() {
+          if (ballY > (paddle2Y)) {
+            paddle2Y += NPC_STEP;
+          } else {
+            paddle2Y -= NPC_STEP;
+          }
         }
       }
 
