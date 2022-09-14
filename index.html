@@ -126,6 +126,8 @@
           colorRect((canvas.width - PADDLE_THICKNESS), paddle2Y, PADDLE_THICKNESS, PADDLE_HEIGHT, 'white');
 
           colorCircle(ballX, ballY, 10, 'white');
+
+          colorRect(canvas.width/2, 0, 1, canvas.height, 'white');
         }
 
         function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
@@ -154,10 +156,10 @@
         }
 
         function ballReset() {
-          if (player1Score >= 2) {
+          if (player1Score >= 3) {
             winner = 'Player 1';
             showingWinScreen = true;
-          } else if (player2Score >= 2) {
+          } else if (player2Score >= 3) {
             winner = 'Player 2';
             showingWinScreen = true;
           }
