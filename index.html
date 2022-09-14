@@ -29,8 +29,8 @@
         let paddle1Y = 100;
         let paddle2Y = 100;
 
-        let player1Score = 0;
-        let player2Score = 0;
+        let yourScore = 0;
+        let aiScore = 0;
 
         let showingWinScreen = false;
         let winner = null;
@@ -51,8 +51,8 @@
         canvas.addEventListener('click', function(evt) {
           winner = null;
           showingWinScreen = false;
-          player1Score = 0;
-          player2Score = 0;
+          yourScore = 0;
+          aiScore = 0;
 
           ballX = canvas.width/2;
           ballY = canvas.height/2;
@@ -77,7 +77,7 @@
               ballSpeedY = ballDistFromPaddleCenter / 5;
               ballSpeedX *= -1;
             } else {
-              player2Score += 1;
+              aiScore += 1;
 
               ballReset();
             }
@@ -92,7 +92,7 @@
 
               ballSpeedX *= -1;
             } else {
-              player1Score += 1;
+              yourScore += 1;
 
               ballReset();
             }
@@ -108,8 +108,8 @@
           ctx.textAlign = 'center';
           ctx.fillStyle = 'white';
           ctx.font = '20px Arial';
-          ctx.fillText('Player 1: ' + player1Score, canvas.width/2 - 100, 50);
-          ctx.fillText('Player 2: ' + player2Score, canvas.width/2 + 100, 50);
+          ctx.fillText('Your: ' + yourScore, canvas.width/2 - 100, 50);
+          ctx.fillText('AI: ' + aiScore, canvas.width/2 + 100, 50);
 
           if (showingWinScreen) {
             ctx.font = '30px Arial';
@@ -156,11 +156,11 @@
         }
 
         function ballReset() {
-          if (player1Score >= 3) {
-            winner = 'Player 1';
+          if (yourScore >= 3) {
+            winner = 'Your';
             showingWinScreen = true;
-          } else if (player2Score >= 3) {
-            winner = 'Player 2';
+          } else if (aiScore >= 3) {
+            winner = 'AI';
             showingWinScreen = true;
           }
 
